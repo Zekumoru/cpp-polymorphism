@@ -1,5 +1,8 @@
 #include "bank-account.hpp"
 
+#include <new>
+#include <stdexcept>
+
 BankAccount::BankAccount(std::string holderName) : holderName(holderName), balance(0) {}
 BankAccount::BankAccount(std::string holderName, double balance) : holderName(holderName), balance(balance) {}
 
@@ -66,4 +69,29 @@ bool CheckingAccount::isOverdrawn() const
 double CheckingAccount::getOverdrawnLimit() const
 {
   return overdrawnLimit;
+}
+
+/**
+ * Savings Account
+ */
+
+SavingsAccount::SavingsAccount(std::string holderName, double annualInterestRate) : BankAccount(holderName) { setAnnualInterestRate(annualInterestRate); }
+SavingsAccount::SavingsAccount(std::string holderName, double annualInterestRate, double balance) : BankAccount(holderName, balance) { setAnnualInterestRate(annualInterestRate); }
+
+void SavingsAccount::applyAnnualInterest()
+{
+  balance *= 1 + annualInterestRate;
+}
+
+double SavingsAccount::getAnnualInterestRate() const
+{
+  return annualInterestRate;
+}
+
+void SavingsAccount::setAnnualInterestRate(double rate)
+{
+  if (rate < 0)
+    throw new std::invalid_argument("Annual interest rate cannot be negative!");
+
+  annualInterestRate = rate;
 }

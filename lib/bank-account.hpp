@@ -34,3 +34,18 @@ public:
   bool isOverdrawn() const;
   double getOverdrawnLimit() const;
 };
+
+class SavingsAccount : public BankAccount
+{
+private:
+  double annualInterestRate;
+
+public:
+  SavingsAccount(std::string holderName, double annualInterestRate);
+  SavingsAccount(std::string holderName, double annualInterestRate, double balance);
+
+  void applyAnnualInterest();
+
+  double getAnnualInterestRate() const;
+  void setAnnualInterestRate(double rate);
+};
