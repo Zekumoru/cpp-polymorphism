@@ -28,5 +28,9 @@ public:
   CheckingAccount(std::string holderName, double overdrawnLimit);
   CheckingAccount(std::string holderName, double overdrawnLimit, double balance);
 
+  int deductFees(double amount);
   int withdraw(double amount) override;
+
+  bool isOverdrawn() const;
+  double getOverdrawnLimit() const;
 };

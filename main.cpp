@@ -16,5 +16,14 @@ int main()
   std::cout << std::fixed << std::setprecision(2);
   std::cout << "Balance: €" << account.checkBalance() << std::endl;
 
+  std::cout << "Deducting acount fees..." << std::endl;
+  account.deductFees(10);
+
+  std::cout << "Balance: €" << account.checkBalance() << std::endl;
+  if (account.isOverdrawn())
+  {
+    std::cout << "[INFO] Bank account is overdrawn!" << std::endl;
+  }
+
   return 0;
 }
